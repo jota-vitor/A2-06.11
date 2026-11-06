@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cartilha digital para aprender GitHub do zero.">
+  <title>GitHub do Zero | Cartilha Digital</title>
+  <style>
+    :root {
+      --bg: #f5f7fb; --surface: #fff; --text: #172033; --muted: #647089;
+      --primary: #2864dc; --primary-dark: #1748ad; --line: #e3e8f1;
+      --soft: #eaf1ff; --code: #101827; --green: #16845b;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; }
+    header { background: linear-gradient(135deg, #101827, #1d3e78); color: white; padding: 26px max(6vw, 22px) 70px; }
+    .top { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .brand { font-weight: 800; letter-spacing: .3px; }
+    .tag { border: 1px solid #ffffff55; border-radius: 999px; padding: 6px 12px; font-size: .82rem; color: #e4ecff; }
+    .hero { max-width: 1100px; margin: 58px auto 0; }
+    .eyebrow { color: #a9c4ff; text-transform: uppercase; letter-spacing: 2px; font-size: .78rem; font-weight: 700; }
+    h1 { font-size: clamp(2.4rem, 6vw, 4.7rem); line-height: 1.05; margin: 14px 0; max-width: 760px; }
+    .hero p { color: #d8e3f8; max-width: 650px; font-size: 1.1rem; }
+    .hero a { display: inline-block; margin-top: 14px; padding: 12px 19px; border-radius: 10px; background: white; color: #163d8a; text-decoration: none; font-weight: 750; }
+    .layout { max-width: 1100px; margin: -32px auto 60px; padding: 0 20px; display: grid; grid-template-columns: 245px minmax(0,1fr); gap: 24px; align-items: start; }
+    nav, main { background: var(--surface); border: 1px solid var(--line); border-radius: 17px; box-shadow: 0 12px 35px #1720330b; }
+    nav { padding: 20px; position: sticky; top: 18px; }
+    nav strong { display: block; margin: 0 0 12px; }
+    nav a { display: block; padding: 8px 10px; margin: 3px 0; border-radius: 8px; color: var(--muted); text-decoration: none; font-size: .92rem; }
+    nav a:hover { background: var(--soft); color: var(--primary); }
+    main { padding: clamp(22px, 4vw, 46px); min-width: 0; }
+    section { scroll-margin-top: 20px; padding-bottom: 28px; margin-bottom: 30px; border-bottom: 1px solid var(--line); }
+    section:last-child { border: 0; margin: 0; padding: 0; }
+    h2 { font-size: 1.65rem; margin: 0 0 14px; letter-spacing: -.4px; }
+    h3 { font-size: 1.12rem; margin: 24px 0 8px; }
+    p { margin: 8px 0 13px; }
+    .muted { color: var(--muted); }
+    .info { background: var(--soft); border-left: 4px solid var(--primary); padding: 14px 17px; border-radius: 8px; margin: 18px 0; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 13px; margin: 18px 0; }
+    .card { background: #fbfcff; border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+    .card b { display: block; margin-bottom: 5px; }
+    ol, ul { padding-left: 23px; }
+    li { margin: 6px 0; }
+    code { background: #eef1f7; padding: 2px 6px; border-radius: 5px; font-size: .92em; }
+    pre { background: var(--code); color: #e6edff; padding: 17px; border-radius: 11px; overflow-x: auto; }
+    pre code { background: none; padding: 0; }
+    .members { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+    .member { border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+    .member span { color: var(--muted); font-size: .82rem; display: block; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: .92rem; }
+    th, td { border: 1px solid var(--line); padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #f0f4fb; }
+    a { color: var(--primary); }
+    .checklist label { display: flex; gap: 10px; margin: 10px 0; align-items: flex-start; }
+    .checklist input { margin-top: 6px; accent-color: var(--primary); }
+    footer { text-align: center; padding: 25px; color: var(--muted); font-size: .88rem; }
+    @media (max-width: 780px) {
+      .layout { grid-template-columns: 1fr; margin-top: -25px; }
+      nav { position: static; }
+      nav div { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .grid, .members { grid-template-columns: 1fr; }
+      header { padding-bottom: 55px; }
+    }
+    @media print {
+      body { background: white; }
+      header { padding: 25px; }
+      .layout { display: block; margin: 20px auto; }
+      nav { display: none; }
+      main { box-shadow: none; border: 0; }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="brand">⌘ GitHub do Zero</div>
+    <span class="tag">Cartilha digital · Grupo 06</span>
+  </div>
+  <div class="hero">
+    <div class="eyebrow">Guia para iniciantes</div>
+    <h1>Aprenda GitHub do zero.</h1>
+    <p>Entenda como organizar projetos, registrar alterações e colaborar com outras pessoas usando o GitHub, com explicações simples e exemplos práticos.</p>
+    <a href="#introducao">Começar a aprender ↓</a>
+  </div>
+</header>
+
+<div class="layout">
+  <nav aria-label="Navegação da cartilha">
+    <strong>Conteúdo</strong>
+    <div>
+      <a href="#apresentacao">Apresentação</a>
+      <a href="#introducao">Git e GitHub</a>
+      <a href="#primeiros-passos">Primeiros passos</a>
+      <a href="#arquivos">Arquivos e versões</a>
+      <a href="#colaboracao">Colaboração</a>
+      <a href="#seguranca">Cuidados</a>
+      <a href="#desafio">Desafio prático</a>
+      <a href="#reflexao">Reflexão</a>
+      <a href="#referencias">Referências</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="apresentacao">
+      <h2>1. Apresentação</h2>
+      <p>Esta cartilha foi desenvolvida para apresentar os conceitos básicos do GitHub de maneira simples e organizada. O material é destinado a estudantes e pessoas que estão começando a aprender tecnologia.</p>
+      <div class="info"><b>Objetivo:</b> ensinar a criar repositórios, organizar arquivos, registrar alterações e compartilhar projetos com outras pessoas.</div>
+      <h3>Integrantes do grupo 06</h3>
+      <div class="members">
+        <div class="member"><span>Integrante 1</span>João Vitor Tatanjo de Araújo</div>
+        <div class="member"><span>Integrante 2</span>Cauã Santos Martins</div>
+        <div class="member"><span>Integrante 3</span>Diego Luis Ferreira Vieira</div>
+        <div class="member"><span>Integrante 4</span>Matheus Soares Novais</div>
+        <div class="member"><span>Integrante 5</span>Alexandre Eric Gama Teles</div>
+      </div>
+      <p class="muted">Professora: Eliane Ribeiro · Conhecimentos necessários: acesso à internet, navegador e uma conta no GitHub.</p>
+    </section>
+
+    <section id="introducao">
+      <h2>2. Introdução ao Git e GitHub</h2>
+      <div class="grid">
+        <div class="card"><b>Git</b>É um sistema de controle de versão que acompanha as alterações realizadas nos arquivos de um projeto.</div>
+        <div class="card"><b>GitHub</b>É uma plataforma online que hospeda repositórios e facilita o compartilhamento e a colaboração em projetos.</div>
+      </div>
+      <p><b>Diferença:</b> o Git controla as versões dos arquivos; o GitHub oferece um espaço online para armazenar repositórios e trabalhar em equipe.</p>
+      <h3>O que é um repositório?</h3>
+      <p>É um espaço utilizado para armazenar e organizar os arquivos de um projeto, como documentos, códigos e imagens.</p>
+      <h3>Repositório público e privado</h3>
+      <ul>
+        <li><b>Público:</b> qualquer pessoa pode visualizar o conteúdo.</li>
+        <li><b>Privado:</b> somente o proprietário e as pessoas autorizadas podem acessar o conteúdo.</li>
+      </ul>
+    </section>
+
+    <section id="primeiros-passos">
+      <h2>3. Primeiros passos no GitHub</h2>
+      <h3>Criando uma conta</h3>
+      <ol>
+        <li>Acesse <a href="https://github.com" target="_blank" rel="noopener">github.com</a>.</li>
+        <li>Clique em <b>Sign up</b> e informe seu e-mail.</li>
+        <li>Crie uma senha e escolha um nome de usuário.</li>
+        <li>Siga as instruções para concluir o cadastro.</li>
+      </ol>
+      <h3>Criando um repositório</h3>
+      <ol>
+        <li>Entre na sua conta e clique em <b>New</b>.</li>
+        <li>Escolha um nome e escreva uma descrição para o projeto.</li>
+        <li>Defina se o repositório será público ou privado.</li>
+        <li>Marque <b>Add a README file</b> e clique em <b>Create repository</b>.</li>
+      </ol>
+      <h3>README e Markdown</h3>
+      <p>O <b>README</b> apresenta as informações principais do projeto, como objetivo, participantes e organização dos arquivos.</p>
+      <p><b>Markdown</b> é uma linguagem de marcação simples usada para formatar textos com títulos, listas, links e negrito.</p>
+      <pre><code># Título do projeto
+## Subtítulo
+**Texto em negrito**
+
+- Primeiro item
+- Segundo item</code></pre>
+    </section>
+
+    <section id="arquivos">
+      <h2>4. Arquivos e controle de versões</h2>
+      <h3>Como adicionar um arquivo?</h3>
+      <ol>
+        <li>Abra o repositório.</li>
+        <li>Clique em <b>Add file</b>.</li>
+        <li>Escolha <b>Create new file</b> ou <b>Upload files</b>.</li>
+        <li>Digite o nome ou selecione o arquivo que deseja enviar.</li>
+        <li>Clique em <b>Commit changes</b> para salvar.</li>
+      </ol>
+      <h3>O que é commit?</h3>
+      <p>Commit é o registro de uma alteração realizada no repositório. Ele possui uma mensagem que explica o que foi modificado.</p>
+      <p>Exemplos: <code>Adiciona arquivo README</code>, <code>Atualiza cartilha</code> e <code>Corrige informações do projeto</code>.</p>
+      <h3>Histórico de alterações</h3>
+      <p>É o registro dos commits realizados. Ele permite acompanhar as mudanças e identificar quem fez cada contribuição.</p>
+    </section>
+
+    <section id="colaboracao">
+      <h2>5. Colaboração no GitHub</h2>
+      <h3>Convidando colaboradores</h3>
+      <ol>
+        <li>Acesse o repositório e clique em <b>Settings</b>.</li>
+        <li>Procure <b>Collaborators</b>.</li>
+        <li>Clique em <b>Add people</b>.</li>
+        <li>Digite o nome de usuário do GitHub e envie o convite.</li>
+        <li>A pessoa deverá aceitar o convite.</li>
+      </ol>
+      <div class="info">Cada integrante deve utilizar sua própria conta. Nunca compartilhe sua senha.</div>
+      <h3>Branch, Pull Request e Merge</h3>
+      <div class="grid">
+        <div class="card"><b>Branch (ramificação)</b>Versão separada do projeto usada para desenvolver alterações sem modificar diretamente a versão principal.</div>
+        <div class="card"><b>Pull Request</b>Solicitação para revisar e propor a incorporação de alterações de uma branch em outra.</div>
+        <div class="card"><b>Merge (mesclagem)</b>Processo de unir as alterações de uma branch à outra.</div>
+        <div class="card"><b>Revisão</b>Análise das mudanças por outro integrante antes de incorporá-las ao projeto.</div>
+      </div>
+      <h3>Etapas de colaboração</h3>
+      <ol>
+        <li>Criar uma branch.</li>
+        <li>Realizar as alterações necessárias.</li>
+        <li>Registrar um commit.</li>
+        <li>Abrir um Pull Request.</li>
+        <li>Solicitar a revisão de outro integrante.</li>
+        <li>Após a conferência, realizar o merge.</li>
+      </ol>
+    </section>
+
+    <section id="seguranca">
+      <h2>6. Cuidados ao compartilhar arquivos</h2>
+      <ul>
+        <li>Não publique senhas ou códigos de autenticação.</li>
+        <li>Não compartilhe tokens de acesso.</li>
+        <li>Evite incluir dados pessoais desnecessários.</li>
+        <li>Confira se o repositório é público ou privado.</li>
+        <li>Revise os arquivos antes de enviá-los.</li>
+        <li>Conceda acesso somente às pessoas necessárias.</li>
+      </ul>
+    </section>
+
+    <section id="desafio">
+      <h2>7. Prática e desafio para o leitor</h2>
+      <p><b>Desafio: crie seu primeiro repositório de estudos.</b></p>
+      <ol>
+        <li>Crie um repositório chamado <code>estudos</code>.</li>
+        <li>Escreva um README explicando o objetivo.</li>
+        <li>Adicione três assuntos que deseja aprender.</li>
+        <li>Crie um arquivo chamado <code>anotacoes.md</code>.</li>
+        <li>Escreva algumas anotações sobre um dos assuntos.</li>
+        <li>Registre uma alteração com um commit claro.</li>
+        <li>Compartilhe o repositório com um colega.</li>
+        <li>Confira se o colega conseguiu acessar e contribuir.</li>
+      </ol>
+      <h3>Como conferir se concluiu?</h3>
+      <div class="checklist">
+        <label><input type="checkbox"> O repositório foi criado.</label>
+        <label><input type="checkbox"> O README apresenta o objetivo.</label>
+        <label><input type="checkbox"> Foram adicionados três assuntos.</label>
+        <label><input type="checkbox"> O arquivo de anotações foi criado.</label>
+        <label><input type="checkbox"> Existe pelo menos um commit.</label>
+        <label><input type="checkbox"> Um colega conseguiu acessar o repositório.</label>
+      </div>
+    </section>
+
+    <section id="reflexao">
+      <h2>8. Reflexão sobre o aprendizado</h2>
+      <p>O GitHub é uma ferramenta importante para estudantes e profissionais da tecnologia, pois facilita a organização de projetos, o acompanhamento de alterações e o trabalho em equipe.</p>
+      <p>O controle de versões ajuda a acompanhar o desenvolvimento de um projeto e permite que diferentes pessoas contribuam de forma organizada. Conhecer Git e GitHub é um passo importante para quem deseja seguir carreira na área de tecnologia.</p>
+    </section>
+
+    <section id="referencias">
+      <h2>9. Referências</h2>
+      <ul>
+        <li><a href="https://docs.github.com/pt/get-started/using-github/hello-world" target="_blank" rel="noopener">GitHub Docs — Hello World</a></li>
+        <li><a href="https://docs.github.com/pt/repositories/working-with-files" target="_blank" rel="noopener">GitHub Docs — Trabalhando com arquivos</a></li>
+        <li><a href="https://docs.github.com/pt/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/inviting-collaborators-to-a-personal-repository" target="_blank" rel="noopener">GitHub Docs — Convidando colaboradores</a></li>
+      </ul>
+      <p class="muted">Material produzido com apoio da Inteligência Artificial. As orientações e práticas devem ser conferidas pelos integrantes na documentação oficial e diretamente na plataforma.</p>
+      <div class="info"><b>Repositório do grupo:</b> <a href="https://github.com/jota-vitor/A2-06.11" target="_blank" rel="noopener">github.com/jota-vitor/A2-06.11</a></div>
+    </section>
+  </main>
+</div>
+<footer>Cartilha Digital · Aprendendo GitHub do Zero · Grupo 06</footer>
+</body>
+</html>
